@@ -15,14 +15,12 @@ def get_student_by_github(github):
     query = """SELECT first_name, last_name, github FROM Students WHERE github = ?"""
     DB.execute(query, (github,))
     row = DB.fetchone()
-# TODO (optional) Returns tuple, there is a way to return a dictionary (look at notes)
-    if row:
-        print """\
-        Student: %s %s
-        Github account: %s"""%(row[0], row[1], row[2])
-        return {'firstname':row[0],'lastname':row[1],'github':row[2]}
-    else: 
-        return row
+# NOTE Returns tuple, there is a way to return a dictionary (see notes)
+# TODO Would this still work with the give_grade function? 
+    return row
+    # Student: %s %s
+    # Github account: %s"""%(row[0], row[1], row[2])
+    # return {'firstname':row[0],'lastname':row[1],'github':row[2]}
 
 def make_new_student(first_name, last_name, github):
     query = """INSERT into Students values (?,?,?)"""
